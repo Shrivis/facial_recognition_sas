@@ -1,0 +1,199 @@
+{% extends 'basic/basic.html' %}
+{% block title %} about {% endblock %}
+{% load static %}
+{% block css %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box !important;
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    .section {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #ddd;
+    }
+
+    .container {
+        width: 80%;
+        display: block;
+        margin: auto;
+        padding-top: 100px;
+    }
+
+    .content-section {
+        float: left;
+        width: 55%;
+
+    }
+
+    .image-section {
+        float: right;
+        width: 40%;
+
+    }
+
+    .image-section img {
+        /* width:100%;
+    height: auto; */
+        width: 600px;
+        height: 600px;
+    }
+
+    .title {
+        text-transform: uppercase !important;
+        font-size: 52px !important;
+        font-weight: bolder !important;
+        color: black;
+
+    }
+
+    .content-section .content h3 {
+        margin-top: 20px;
+        text-align: left !important;
+        color: #5d5d5d;
+        font-size: 21px;
+    }
+
+    .content-section .content p {
+        margin-top: 10px;
+        font-family: sans-serif;
+        font-size: 18px;
+        text-align: left !important;
+        width: 109%;
+        line-height: 1.5;
+    }
+
+    .content-section .content .button {
+        margin-top: 30px;
+    }
+
+    .content-section .content .button a {
+        background-color: #3d3d3d;
+        padding: 12px 40px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 25px;
+        letter-spacing: 1.5px;
+    }
+
+    .content-section .content .button a:hover {
+        background-color: #a52a2a;
+        color: #fff;
+    }
+
+    .content-section .social {
+        margin: 40px 40px;
+    }
+
+    .content-section .social i {
+        color: #a52a2a;
+        font-size: 30px;
+        padding: 0px 10px;
+    }
+
+    .content-section .social i:hover {
+        color: #3d3d3d;
+    }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 80%;
+            display: block;
+            margin: auto;
+            padding-top: 50px;
+        }
+
+        .content-section {
+            float: none;
+            display: block;
+            margin: auto;
+        }
+
+        .image-section {
+            float: none;
+            width: 100%;
+        }
+
+        .image-section img {
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .content-section .title {
+            text-align: center;
+            font-size: 19px !important;
+        }
+
+        .content-section .content .button {
+            text-align: center;
+        }
+
+        .content-section .content .button a {
+            padding: 9px 30px;
+        }
+
+        .icon-cl {
+            color: red !important;
+        }
+    }
+</style>
+{% endblock %}
+{% block body %}
+<!-- Header -->
+<div class="col-md-12 bg">
+    <div data-simplebar class="py-5 px-5">
+        <div class="section">
+            <div class="container">
+                <div class="content-section">
+                    <div class=" text-dark">
+                        <h1 class='title'>Smart Attendance</h1>
+                    </div>
+                    <div class="content">
+                        <div class="text-dark">
+                            <h3 class="content-left">Facial Recognition Attendance System</h3>
+                            <p>The main purpose of this application is to build a face recognition-based attendance
+                                monitoring system for educational institution to enhance and upgrade the current
+                                attendance
+                                system into more efficient and effective as compared to before. This application will
+                                resolve the flaws existed in the current system while
+                                bringing attendance taking to a whole new level by automating most of the tasks.
+                            </p>
+                            <p>The technology working behind will be the face recognition system. The human face is
+                                one of the natural traits that can uniquely identify an individual. Therefore, it is
+                                used to trace
+                                identity as the possibilities for a face to deviate or being duplicated is low. In this
+                                application, face
+                                databases will be created to pump data into the recognizer algorithm.</p>
+
+
+                        </div>
+
+                        <div class="social corner row">
+                            <h2 class="d-flex mt-5 mr-4 text-danger"><a href="#"></a><i
+                                    class="fab fa-facebook-f"></i></a></h2>
+                            <h2 class="d-flex mt-5 mr-4 text-danger"><a href="#"></a><i class="fab fa-twitter"></i></a>
+                            </h2>
+                            <h2 class="d-flex mt-5 mr-4 text-danger"><a href="#"></a><i
+                                    class="fab fa-instagram"></i></a></h2>
+
+                            <div class="button  mb-3">
+                                <a href="">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-section">
+                    <img src="{% static 'images/first.jpg' %}" alt="about img">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "basic/footerLarge.html" %}
+{% endblock %}

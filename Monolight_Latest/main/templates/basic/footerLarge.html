@@ -1,0 +1,48 @@
+{% load static %}
+<footer class="container-fluid bg-grey py-5 footer-text footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="logo-part">
+                            <img src="{% static 'images/logo.png' %}" style="max-width: 200px;" class="logo-footer">
+                            <h3 class="mx-5">Smart Attendance</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-5 ml-5">
+                        <h6> About US</h6>
+                        <a href="#" class="btn-footer"> More Info </a><br>
+                        <a href="#" class="btn-footer"> Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>About Project</h6>
+                        <div class="row ">
+                            <p>This is an attempt to create a smart attendence system that works without any physical
+                                contact. It is autonomous, fast and highly accurate. Usage of this application does not
+                                require any prior knowladge. User has to simply stand in front of the camera and the
+                                system will handle everything else</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 ml-4">
+                        <h6>Subscribe</h6>
+                        <div class="social row">
+                            <h2 class="d-flex mr-2"><a href="#"><i class="ti-facebook"></i></a></h2>
+                            <h2><a href="#"><i class="ti-instagram"></i></a></h2>
+                        </div>
+                        <form class="form-footer row">
+                            <input type="text" class="col-md-9 d-flex my-3" placeholder="email address..."
+                                name="search">
+                            <input class="d-flex col-md-3 my-3" type="button" value="Go">
+                        </form>
+                        <p> We have much to offer... Stay close</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

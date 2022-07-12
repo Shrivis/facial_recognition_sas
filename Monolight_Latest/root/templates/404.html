@@ -1,0 +1,27 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} login {% endblock %}
+{% block css %}
+<style>
+    .height {
+        height:88vh;
+        background: white;
+    }
+    .size {
+        font-size:100px;
+        padding-top: 6%;
+        margin-right: auto; margin-left: auto; width: 800px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="box height">
+    <h1 class="text-danger size text-center">
+        <i class="ti-face-sad"></i></br>404 
+        <span class='text-dark'>Page Not Found</span></br>
+        <a class="btn btn-primary mx-auto" href="/profile">Go back</a>
+    </h1>
+    
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}

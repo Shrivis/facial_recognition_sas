@@ -1,0 +1,30 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} Graphs {% endblock %}
+{% block body %}
+<!-- Header -->
+<div class="row">
+    <div class="bg-dark col-md-2">
+        <ul id="side-menu">
+            <div class="bar"></div>
+            <li><a href="/manage/all_profile" class="links bar">
+                <i class="ti-user mx-3"></i>Profiles</a></li>
+            <li><a href="/manage/requests" class="links bar">
+                <i class="ti-write mx-3"></i>Requests</a></li>
+            <li><a href="/manage/all_attendance" class="links">
+                <i class="ti-layout mx-3"></i>Attendance</a></li>
+            <li><a href="/manage/all_graphs" class="links activebar">
+                <i class="ti-bar-chart-alt mx-3"></i>Graphs</a></li>
+        </ul>
+    </div>
+    <div data-simplebar class="col-md-10 window bg py-5 px-5">  
+        <div class="jumbotron text-center py-5 px-5 text-dark mt-5">
+            <h1 class="py-5 px-5 text-center"><i class="ti-face-smile"></i>
+            </br>Work in Progress</br>
+            <span class="text-success">Graphs will soon be available</span>
+            </h1>
+        </div>
+    </div>
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} Attendance {% endblock %}
+{% block body %}
+<!-- Header -->
+<div class="row">
+    <div class="bg-dark col-md-2">
+        <ul id="side-menu">
+            <div class="bar"></div>
+            <li><a href="/manage/all_profile" class="links bar">
+                    <i class="ti-user mx-3"></i>Profiles</a></li>
+            <li><a href="/manage/requests" class="links">
+                    <i class="ti-write mx-3"></i>Requests</a></li>
+            <li><a href="/manage/all_attendance" class="links activebar">
+                    <i class="ti-layout mx-3"></i>Attendance</a></li>
+            <li><a href="/manage/all_graphs" class="links bar">
+                    <i class="ti-bar-chart-alt mx-3"></i>Graphs</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10 bg py-4 px-5 window">
+        <div data-simplebar class="bg-light box">
+            <div class="card-header bg-dark">
+                <span style="font-size:25px;"><i class="ti-calendar text-success mx-3"></i></span><span
+                    style="font-size:18px;">Attendance record for {{data.subject}} on {{data.date}}</span>
+                <span class="float-right my-2"><a href='#'><i
+                            class="ti-download mx-2"></i>{{data.present}}/{{data.total}}</a>
+                </span>
+            </div>
+            <div class="card-body bg-light">
+                <div class="row">
+                    <!-- <button type="button" class="list-group-item col-md-3 d-flex list-group-item-action">Date</button> -->
+                    <button type="button" class="list-group-item col-md-4 d-flex list-group-item-action"><i
+                            class="ti-book mx-2"> Student</i></button>
+                    <span type="button" class="list-group-item col-md-4 d-flex list-group-item-action"><i
+                            class="ti-time mx-2"> In time</i></span>
+                    <span type="button" class="d-flex col-md-4 list-group-item list-group-item-success"><i
+                            class="ti-check mx-2"> Status</i></span>
+                </div>
+                <div id="no_att"></div>
+                <div id="att"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}
+{% block js %}
+<script>
+    if (`{{record.count}}` === '0') {
+        var nor_req = `<div class="card-header text-center mb-3 mt-3 bg-success">No attendance record found</div>`;
+        $('#no_att').append(nor_req);
+    }
+    {% for item in record %}
+    var element = '';
+    if ('{{item.is_absent}}' == 'False') {
+        element = `
+            <div class="mt-2"></div>
+            <div class="row">
+                <button type="button" class="list-group-item col-md-4 d-flex list-group-item-action">{{item.user_id.user.first_name}} {{item.user_id.user.last_name}}</button>
+                <span type="button" class="list-group-item col-md-4 d-flex list-group-item-action">{{item.in_time}}</span>
+                <span type="button" class="d-flex col-md-4 list-group-item list-group-item-success">Present</span>
+            </div>
+        `;
+    }
+    else {
+        element = `
+            <div class="mt-2"></div>
+            <div class="row">
+                <button type="button" class="list-group-item col-md-4 d-flex list-group-item-action">{{item.user_id.user.first_name}} {{item.user_id.user.last_name}}</button>  
+                <span type="button" class="list-group-item col-md-4 d-flex list-group-item-action">-</span>
+                <span type="button" class="d-flex col-md-4 list-group-item list-group-item-danger">Absent</span>
+            </div>
+        `;
+    }
+    $('#att').append(element);
+    {% endfor %}
+</script>
+{% endblock %}

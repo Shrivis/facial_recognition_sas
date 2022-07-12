@@ -1,0 +1,422 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: rgb(206, 206, 206);
+}
+a:hover {
+    color: teal;
+}
+nav {
+    display: flex;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: Aladin;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 40px;
+    z-index: 1000;
+    background-color: #242424;
+}
+.cool-background {
+    width: 100%;
+    background: #131313;
+    background: -webkit-linear-gradient(to left, #141414, #b3b3b3);
+    background-image: url("/static/images/s.png"),
+        linear-gradient(to left, #111111, #b3b3b3);
+    background-size: 100%;
+    color: #fff;
+}
+/* .cool-background {
+    width: 100%;
+    background: #131313;
+    background: -webkit-linear-gradient(to left, #1b1b1b, #b3b3b3);
+    background: linear-gradient(to left, #1b1b1b, #b3b3b3);
+    color: #fff;
+} */
+.name {
+    font-family: "Amita" !important;
+    opacity: 0.9;
+    display: inline-flex;
+    font-size: 36px;
+    color: #0c0c0c;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 4px rgb(66, 66, 66);
+}
+.big {
+    font-size: 45px;
+    color: white !important;
+    text-shadow: 4px 4px 4px rgb(0, 0, 0);
+}
+.doc {
+    position: relative;
+    bottom: 60px;
+}
+.bigic {
+    color: white !important;
+    text-shadow: 4px 4px 4px rgb(0, 0, 0);
+}
+.name:hover {
+    color: white !important;
+}
+.big:hover {
+    color: #0c0c0c;
+}
+.menu {
+    display: flex;
+}
+.active {
+    background-color: rgb(124, 124, 124) !important;
+    color: rgb(216, 216, 216) !important;
+    border-radius: 20px;
+}
+.active:hover {
+    background-color: transparent !important;
+}
+.menu li a {
+    padding: 10px 15px;
+    color: rgb(150, 150, 150);
+    font-size: 12px;
+}
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #757575;
+    font-family: Aladin;
+}
+.menu li a:hover {
+    color: #fff !important;
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+}
+.about {
+    min-height: 11vh;
+    width: 100vw;
+    margin: 0 auto;
+}
+.image {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 40vh;
+    min-width: 25vh;
+    max-width: 40vh;
+    max-height: auto;
+    border-radius: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.corner {
+    border-radius: 1px 5px 1px 5px !important;
+    position: relative;
+    font-size: 32px;
+    bottom: 10px;
+    color: rgb(233, 235, 234);
+    left: 220px;
+}
+.corner-small {
+    position: relative;
+    font-size: 20px;
+    color: rgb(233, 235, 234);
+    /* left: 500px; */
+}
+.logo-part {
+    border-right: 1px solid grey;
+    height: 100%;
+}
+.content span {
+    height: 2px;
+    width: 60%;
+    background: #777;
+    margin: 15px 15px;
+}
+.content p {
+    padding-bottom: 15px;
+    font-weight: 300;
+    opacity: 0.7;
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+.footer {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.bg-grey {
+    background: #4b4b4b;
+}
+.logo-footer {
+    margin-bottom: 40px;
+}
+footer {
+    color: rgb(168, 167, 167);
+}
+.footer-text {
+    font-family: sans-serif;
+    background: #343a40;
+    font-size: 12px;
+}
+footer h6 {
+    font-family: "amita";
+    margin-bottom: 40px;
+    position: relative;
+}
+footer h6:after {
+    position: absolute;
+    content: "";
+    background: grey;
+    width: 12%;
+    height: 1px;
+    left: 0;
+    bottom: -20px;
+}
+.btn-footer {
+    color: grey;
+
+    text-decoration: none;
+    border: 1px solid;
+    border-radius: 43px;
+    font-size: 13px;
+    padding: 7px 30px;
+    line-height: 47px;
+}
+.btn-footer:hover {
+    text-decoration: none;
+    color: white;
+}
+.form-footer input[type="text"] {
+    border: none;
+    border-radius: 16px 0 0 16px;
+    outline: none;
+}
+::placeholder {
+    font-size: 10px;
+    font-style: italic;
+}
+.form-footer input[type="button"] {
+    border: none;
+    background: #232323;
+    color: #fff;
+    outline: none;
+    border-radius: 0 16px 16px 0;
+}
+.social .fa {
+    color: grey;
+    font-size: 22px;
+    padding: 10px 15px;
+    background: #3c3c3c;
+}
+footer ul li {
+    list-style: none;
+    display: block;
+}
+footer ul {
+    padding-left: 0;
+}
+footer ul li a {
+    text-decoration: none;
+    color: grey;
+    text-decoration: none;
+}
+.privacy {
+    font-family: Aladin;
+    color: rgb(85, 32, 32);
+    padding: 220px 0;
+    font-size: xx-large;
+    text-align: center;
+}
+.text-center {
+    text-align: center !important;
+}
+.padding {
+    padding: 10vh;
+}
+
+/* profile */
+.col-md-2 {
+    margin: 0%;
+    padding: 0%;
+}
+.row {
+    margin: 0% !important;
+}
+.links {
+    width: 100%;
+    margin: 0;
+    padding: 0%;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+#side-menu li.activebar > a {
+    background: rgba(0, 0, 0, 0.02);
+}
+#side-menu li a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+}
+#side-menu > li > a {
+    padding: 15px 30px 15px 15px;
+}
+#side-menu > li > a:focus,
+#side-menu > li > a:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+#side-menu > li > a.activebar {
+    background-color: #13dafe;
+    color: #fff;
+}
+#side-menu > li > a.activebar:hover {
+    background-color: #178497;
+    color: #fff;
+}
+#side-menu ul > li > a:hover {
+    color: #13dafe;
+    background: 0 0;
+}
+#side-menu ul > li > a.active {
+    color: #13dafe;
+}
+.name {
+    font-family: "Amita" !important;
+    opacity: 0.9;
+    display: inline-flex;
+    font-size: 36px;
+    color: #0c0c0c;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 4px rgb(66, 66, 66);
+}
+.big {
+    font-size: 40px;
+    color: white !important;
+    text-shadow: 4px 4px 4px rgb(0, 0, 0);
+}
+.name:hover {
+    color: white !important;
+}
+.big:hover {
+    color: #0c0c0c;
+}
+.menu li a:hover {
+    color: #fff !important;
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif !important;
+}
+.list-group-item {
+    background-color: transparent !important;
+}
+.content span {
+    height: 2px;
+    width: 60%;
+    background: #777;
+    margin: 15px 15px;
+}
+.content p {
+    padding-bottom: 15px;
+    font-weight: 300;
+    opacity: 0.7;
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+.text-center {
+    text-align: center !important;
+}
+.padding {
+    padding: 10vh;
+}
+.bg {
+    background: rgba(104, 104, 104, 0.8);
+}
+.window {
+    overflow: auto;
+    min-height: 87.1vh;
+    max-height: 87.1vh;
+}
+
+::placeholder {
+    color: rgb(168, 168, 168);
+    font-size: 15px;
+    font-style: normal !important;
+    opacity: 0.8; /* Firefox */
+}
+/* for bar at top of sidebar*/
+.bar {
+    border-bottom: 1px solid;
+    border-color: rgb(95, 95, 95);
+    width: 96%;
+}
+.box {
+    background: rgba(59, 59, 59, 0.8);
+    border-radius: 10px 10px 10px 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+.bg-primary {
+    color: rgb(22, 22, 22);
+    background-color: #13dafe !important;
+    border-color: #13dafe;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #13dafe;
+    border-color: #13dafe;
+}
+.btn-primary:hover {
+    background-color: #178497;
+    border-color: #178497;
+}
+.btn-primary:disabled {
+    color: #fff;
+    cursor: not-allowed;
+    pointer-events: all !important;
+    background-color: #2bdfff60;
+    border-color: #2bdfff60;
+}
+
+@media (max-width: 900px) {
+    .about {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .image {
+        min-height: 20vh;
+        min-width: 15vh;
+        max-width: 20vh;
+        max-height: auto;
+    }
+    .py-5 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .user-detail-placeholder {
+        display: none;
+    }
+}

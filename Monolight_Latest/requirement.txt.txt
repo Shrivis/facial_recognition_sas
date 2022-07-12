@@ -1,0 +1,7 @@
+cmake
+pillow
+opencv-python
+dlib
+numpy
+pandas
+tensorflow

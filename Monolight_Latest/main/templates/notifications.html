@@ -1,0 +1,143 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} Notifications {% endblock %}
+{% block body %}
+<!-- Header -->
+<div class="row">
+    <div class="bg-dark col-md-2">
+        <ul id="side-menu">
+            <div class="bar"></div>
+            <li><a href="/profile" class="links">
+                <i class="ti-user mx-3"></i>{{user.first_name}}</a></li>
+            <li><a href="/notification" class="links activebar">
+                <i class="ti-bell mx-3"></i>Notifications</a></li>
+            <li><a href="/attendance" class="links bar">
+                <i class="ti-layout mx-3"></i>Attendance</a></li>
+            <li><a href="/graphs" class="links bar">
+                <i class="ti-bar-chart-alt mx-3"></i>Graphs</a></li>
+            <li><a href="/cpassword" class="links bar">
+                    <i class="ti-lock mx-3"></i>Change Passwd</a></li>
+        </ul>
+    </div>
+    <div data-simplebar class="col-md-10 window bg py-5 px-5">  
+        <div id="pending"></div>
+        <div id="notify"></div>
+    </div>
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}
+{% block js %}
+<script>
+if (`{{final.count}}`==='0' && `{{req.count}}`==="0") {
+    var msg = `
+    <div class="jumbotron text-center py-5 px-5 text-dark mt-5">
+        <h1 class="py-5 px-5 text-center"><i class="ti-face-smile"></i>
+        </br>You've not made any new requests</br>
+        <span class="text-success">Let us know if we can help</span>
+        </br><a class="btn btn-primary mx-2" href="/change">Make a new Request</a>
+        </h1>
+    </div>`;
+    $('#pending').append(msg);
+} else {
+    if (`{{req.count}}`==='0') {
+        var nor_req = `<div class="card-header text-center mb-3 bg-success">You don't have any pending requests</div>`;
+        $('#pending').append(nor_req);
+    } else {
+        var nor_req = `<div class="text-center"><div style="font-size: 30px" ; class="big name mb-2">Pending Requests</div></div>`;
+        $('#pending').append(nor_req);
+    }
+    if (`{{final.count}}`==='0') {
+        var nor_req = `<div class="card-header text-center mb-3 bg-success">Please wait while our team reviews your request</div>`;
+        $('#notify').append(nor_req);
+    } else {
+        var nor_req = `<div class="text-center"><div style="font-size: 30px" ; class="big name mb-2">Request History</div></div>`;
+        $('#notify').append(nor_req);
+    }
+}
+{% for item in req %}
+    var req_list = JSON.parse('{{item.data}}'.replace(/&quot;/g,'"'));
+    var listgroup = '';
+    if (req_list["username"])
+        listgroup += `<li class="list-group-item">Request for change in username to: ${req_list["username"]}</li>`;
+    if (req_list["fname"])
+        listgroup += `<li class="list-group-item">Request for change in First Name to: ${req_list["fname"]}</li>`;
+    if (req_list["lname"])
+        listgroup += `<li class="list-group-item">Request for change in Last Name to: ${req_list["lname"]}</li>`;
+    if (req_list["email"])
+        listgroup += `<li class="list-group-item">Request for change in email to: ${req_list["email"]}</li>`;
+    if (req_list["address"])
+        listgroup += `<li class="list-group-item">Request for change in address to: ${req_list["address"]}</li>`;
+    if (req_list["contact"])
+        listgroup += `<li class="list-group-item">Request for change in contact to: ${req_list["contact"]}</li>`;
+    if (req_list["dob"])
+        listgroup += `<li class="list-group-item">Request for change in date of birth to: ${req_list["dob"]}</li>`;
+    if (req_list["join"])
+        listgroup += `<li class="list-group-item">Request for change in joining date to: ${req_list["join"]}</li>`;
+    element = `
+    <div class="box">
+        <div class="card-header bg-dark">
+            <span style="font-size:25px;"><i class="ti-alert text-warning mx-2"></i></span>Your reuqest for following changes is under review
+            <span class="float-right my-2">{{item.time}}</span>
+        </div>
+        <div class="card-body">
+            <ul class="list-group-flush">
+                ${listgroup}
+            </ul>
+            <span class="float-right doc"><a target="_blank" href="/media/{{item.file}}"><i class="ti-files big mb-2"></i></br>view doc</a></span>
+        </div>
+    </div>
+    </br>
+    `;
+    $('#pending').append(element);
+{% endfor %}
+
+{% for item in final %}
+var req_list = JSON.parse('{{item.req_id.data}}'.replace(/&quot;/g,'"'));
+var head;
+if ('{{msg.is_approved}}'==='True')
+    head = `
+    <div class="card-header bg-success">
+        <i class="ti-face-smile mx-2"></i>Request was Approved
+        <span class="float-right">{{item.time}}</span>
+    </div>
+    `;
+else
+    head = `
+    <div class="card-header bg-danger">
+        <i class="ti-close mx-2"></i>Denied: {{item.message}}
+        <span class="float-right">{{item.time}}</span>
+    </div>
+    `;
+var listgroup = '';
+if (req_list["username"])
+    listgroup += `<li class="list-group-item">Request for change in username to: ${req_list["username"]}</li>`;
+if (req_list["fname"])
+    listgroup += `<li class="list-group-item">Request for change in First Name to: ${req_list["fname"]}</li>`;
+if (req_list["lname"])
+    listgroup += `<li class="list-group-item">Request for change in Last Name to: ${req_list["lname"]}</li>`;
+if (req_list["email"])
+    listgroup += `<li class="list-group-item">Request for change in email to: ${req_list["email"]}</li>`;
+if (req_list["address"])
+    listgroup += `<li class="list-group-item">Request for change in address to: ${req_list["address"]}</li>`;
+if (req_list["contact"])
+    listgroup += `<li class="list-group-item">Request for change in contact to: ${req_list["contact"]}</li>`;
+if (req_list["dob"])
+    listgroup += `<li class="list-group-item">Request for change in date of birth to: ${req_list["dob"]}</li>`;
+if (req_list["join"])
+    listgroup += `<li class="list-group-item">Request for change in joining date to: ${req_list["join"]}</li>`;
+element = `
+<div class="box">
+    ${head}
+    <div class="card-body">
+        <ul class="list-group-flush">
+            ${listgroup}
+        </ul>
+        <span class="float-right doc"><a target="_blank" href="/media/{{item.req_id.file}}"><i class="ti-files big mb-2"></i></br>view doc</a></span>
+    </div>
+</div>
+</br>
+`;
+$('#notify').append(element);
+{% endfor %}
+</script>
+{% endblock %}

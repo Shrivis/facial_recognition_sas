@@ -1,0 +1,81 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} Update {% endblock %}
+{% block css %}
+<style>
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: white;
+        font-size: 15px;
+        font-style: normal !important;
+        opacity: 0.8; /* Firefox */
+    }
+</style>
+{% endblock %}
+{% block body %}
+<!-- Header -->
+<div class="row">
+    <div class="bg-dark col-md-2">
+        <ul id="side-menu">
+            <div class="bar"></div>
+            <li><a href="/profile" class="links activebar">
+                <i class="ti-user mx-3"></i>{{user.first_name}}</a></li>
+            <li><a href="/notification" class="links bar">
+                <i class="ti-bell mx-3"></i>Notifications</a></li>
+            <li><a href="/attendance" class="links bar">
+                <i class="ti-layout mx-3"></i>Attendance</a></li>
+            <li><a href="/graphs" class="links bar">
+                <i class="ti-bar-chart-alt mx-3"></i>Graphs</a></li>
+            <li><a href="/cpassword" class="links bar">
+                <i class="ti-lock mx-3"></i>Change Passwd</a></li>
+        </ul>
+    </div>
+    <div data-simplebar class="col-md-10 window bg py-5 px-5">
+        <div class="row box">
+            <div class="my-5 col-md-6">
+                <div class="text-center">
+                    <img class="image" src={{ data.image.url }}/></br></br>
+                    <h2 class="big name">{{request.user.first_name|slice:"0:1"}}</h2>
+                    <h2 class="name">{{request.user.first_name|slice:"1:"}}</h2>&nbsp;&nbsp;
+                    <h2 class="big name">{{request.user.last_name|slice:"0:1"}}</h2>
+                    <h2 class="name">{{request.user.last_name|slice:"1 :"}}</h2>
+                </div>
+            </div>
+            <div class="content col-md-6">
+                <div class="row pt-3">
+                    <div class="col-md-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Username</li>
+                            <li class="list-group-item">FirstName</li>
+                            <li class="list-group-item">LastName</li>
+                            <li class="list-group-item">Email</li>
+                            <li class="list-group-item">Address</li>
+                            <li class="list-group-item">Contact</li>
+                            <li class="list-group-item">DOB</li>
+                            <li class="list-group-item">Joining</li>
+                            <li class="list-group-item">Verification *</span></li>
+                        </ul>   
+                    </div>  
+                    <div class="col-md-8">
+                        <form action="/change/" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <ul class="list-group list-group-flush">
+                                <input type="text" class="text-light list-group-item" name="username" placeholder="{{data.user.username}}">
+                                <input type="text" class="text-light list-group-item" name="fname" placeholder="{{data.user.first_name}}">
+                                <input type="text" class="text-light list-group-item" name="lname" placeholder="{{data.user.last_name}}">
+                                <input type="email" class="text-light list-group-item" name="email" placeholder="{{data.user.email}}">
+                                <input type="text" class="text-light list-group-item" name="address" placeholder="{{data.add_line_2}}, {{data.state}} - {{data.pin_code}}">
+                                <input type="text" class="text-light   list-group-item" name="contact" placeholder="{{data.phone}}">
+                                <input type="date" class="text-light list-group-item" name="dob">
+                                <input type="date" class="text-light list-group-item" name="join">
+                                <input type="file" class="text-light list-group-item" name="file" required>
+                            </ul>
+                            <button type="submit" value="Upload" class="mt-1 mb-2 float-right btn btn-primary">Submit</button>
+                        </form>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}

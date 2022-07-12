@@ -1,0 +1,154 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block css %}
+<style>
+    body {
+        background: rgb(219, 226, 226) !important;
+    }
+
+    .row-item {
+        background: white;
+        border-radius: 30px;
+        box-shadow: 12px 12px 22px grey;
+    }
+
+    img {
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
+    .home-image {
+        background-image: url("/static/images/pic4.jpg"),
+            linear-gradient(to left, #111111, #b3b3b3);
+        background-size: cover;
+        border-radius: 30px 0px 0px 30px;
+        box-shadow: 0px 0px 22px grey;
+    }
+
+    .btn1 {
+        border: none;
+        outline: none;
+        height: 50px;
+        width: 100%;
+        background-color: black;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .btn1:hover {
+        background: white;
+        border: 1px solid;
+        color: black;
+    }
+
+    .size {
+        min-height: 70vh !important;
+        width: auto;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<!-- Header -->
+<section class="form my-5 mx-5 text-dark">
+    <div class="container size ">
+        <div class="row row-item no-gutters">
+            <div id="images" class="col-lg-5 home-image">
+                <div class="text-center mt-5">
+                    <!-- <button id="start-camera" class="btn btn-success">Start Camera</button>
+                    <video hidden id="video" width="320" height="240" autoplay></video>
+                    <button id="click-photo" class="btn btn-secondary my-2 mx-5" style="display:none;">Click
+                        Photo</button> -->
+                    <canvas id="canvas" width="415" height="344"></canvas>
+                    <!-- <form action="/" method="post">
+                        {% csrf_token %}
+                        <span id="imageURL"></span>
+                        <input hidden class="input-group-text" id="bias" value="1" name="bias" />
+                        <li id="toggle_bias" type="button">+</li>
+                        <button style="display: none;" value="submit" id="imgSubmit" type="submit"
+                            class="btn btn-success my-2 mx-4">Verify</button>
+                    </form> -->
+                    <form action="/" method="post">
+                        {% csrf_token %}
+                        <div class="row mx-5 my-auto px-5 py-auto ">
+                            <div class="input-group-text">
+                            <input type='text' class="input-group-text" placeholder="subject" value="{{subject}}"
+                                id="subject" name="subject" />
+                            <button value="submit" type="submit" class="btn btn-success my-2 mx-4">Verify</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-7 size px-5 pt-5">
+                <h1 class="font-weight-bold py-3">Smart Attendance</h1>
+                <h4>Your Presence has been </h4>
+                <form action="">
+                    <label id="rec" class="btn btn-outline-success mt-3 mb-5 " for="success-outlined">Recorded</label>
+                    <label id="nRec" class="btn btn-danger mt-3 mb-5" for="danger-outlined">Not Recorded</label>
+                    <div class="input-group col-lg-14">
+                        <span class="input-group-text">Message</span>
+                        <textarea id="alertmsg" rows="4" class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "basic/footerLarge.html" %}
+{% endblock %}
+{% block js %}
+<script>
+    // let camera_button = document.querySelector("#start-camera");
+    // let video = document.querySelector("#video");
+    // let click_button = document.querySelector("#click-photo");
+    // let canvas = document.querySelector("#canvas");
+    // let submitBtn = document.getElementById('imgSubmit');
+    // let toggle = document.getElementById('toggle_bias');
+
+    // camera_button.addEventListener('click', async function () {
+    //     let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    //     video.srcObject = stream;
+    //     camera_button.style.display = "none";
+    //     click_button.style.display = "block";
+    // });
+
+    // click_button.addEventListener('click', function () {
+    //     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    //     let image_data_url = canvas.toDataURL('image/jpeg');
+    //     submitBtn.style.display = "block";
+    //     ele = `
+    //     <input hidden type="text" value="${image_data_url}" name="image"/>
+    //     `;
+    //     $('#imageURL').append(ele);
+    //     // document.getElementById('images').style.backgroundImage = imageCapture; 
+    //     console.log(image_data_url);
+    //     stream.stop();
+    //     video.setAttribute("hidden", "hidden");
+    // });
+
+    // toggle.addEventListener('click', function () {
+    //     document.getElementById('bias').value = '0';
+    // });
+
+    // Alert
+    document.getElementById("alertmsg").style.display = "block";
+    {% for message in messages %}
+    if ('{{message}}'.includes("morning")) {
+        var cls = "text-success";
+        document.getElementById('nRec').style.display = "none";
+        document.getElementById('rec').className += " btn-success text-light";
+    }
+    else {
+        var cls = "text-danger";
+        document.getElementById('rec').style.display = "none";
+    }
+    var textBox = document.getElementById("alertmsg");
+    textBox.value = '{{message}}';
+    textBox.className += ` ${cls}`;
+    {% endfor %}
+
+</script>
+{% endblock %}

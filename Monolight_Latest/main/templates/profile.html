@@ -1,0 +1,93 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} profile {% endblock %}
+{% block body %}
+<!-- Header -->
+<div class="row">
+    <div class="bg-dark col-md-2">
+        <ul id="side-menu">
+            <div class="bar"></div>
+            <li><a href="/profile" class="links activebar">
+                <i class="ti-user mx-3"></i>{{user.first_name}}</a></li>
+            <li><a href="/notification" class="links bar">
+                <i class="ti-bell mx-3"></i>Notifications</a></li>
+            <li><a href="/attendance" class="links bar">
+                <i class="ti-layout mx-3"></i>Attendance</a></li>
+            <li><a href="/graphs" class="links bar">
+                <i class="ti-bar-chart-alt mx-3"></i>Graphs</a></li>
+            <li><a href="/cpassword" class="links bar">
+                <i class="ti-lock mx-3"></i>Change Passwd</a></li>
+        </ul>
+    </div>
+    <div data-simplebar class="col-md-10 window bg py-5 px-5">
+        <div class="col-md-12 box mb-2" id="msgbox">
+            <div class="alert-warning bg-transparent text-center" id="alertmsg"></div>
+        </div>
+        <div class="row box">
+            <div class="my-5 col-md-6">
+                <div class="text-center">
+                    <img class="image" src={{ data.image.url }}/></br></br>
+                    <h2 class="big name">{{request.user.first_name|slice:"0:1"}}</h2>
+                    <h2 class="name">{{request.user.first_name|slice:"1:"}}</h2>&nbsp;&nbsp;
+                    <h2 class="big name">{{request.user.last_name|slice:"0:1"}}</h2>
+                    <h2 class="name">{{request.user.last_name|slice:"1 :"}}</h2>
+                </div>
+            </div>
+            <div class="content col-md-6">
+                <div class="text-center">
+                    <h2 class="big name">{{data.desg|slice:"0:1"}}</h2>
+                    <h2 class="name">{{data.desg|slice:"1:"}}</h2>
+                </div>
+                <span></span>
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Username</li>
+                            <li class="list-group-item">Branch</li>
+                            <li class="list-group-item">Email</li>
+                            <li class="list-group-item py-4">Address</li>
+                            <li class="list-group-item">Contact</li>
+                            <li class="list-group-item">DOB </li>
+                            <li class="list-group-item">Joining</li>
+                        </ul>   
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{request.user.username}}</li>
+                            <li class="list-group-item">{{data.branch}} - {{data.sem}}</li>
+                            <li class="list-group-item">{{request.user.email}}</li>
+                            <li class="list-group-item">{{data.add_line_2}}, {{data.state}} - {{data.pin_code}}</li>
+                            <li class="list-group-item">+91 {{data.phone}}</li>
+                            <li class="list-group-item">{{data.dob.date}}</li>
+                            <li class="list-group-item">{{data.join.date}}</li>
+                        </ul>            
+                    </div>
+                </div>
+            </div>
+            <a href="/change" class="btn btn-primary ml-2 mb-2 float-right">Request Change</a>
+        </div>
+    </div>
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}
+{% block js %}
+<script>
+{% if messages|length == 0 %}
+document.getElementById("alertmsg").style.display = "none";
+{% else %}
+document.getElementById("alertmsg").style.display = "block";
+{% for message in messages %}
+    if ('{{message}}'.includes("success"))
+        var cls = "text-success";
+    else   
+        var cls = "text-danger";
+    var ele = `
+    <div class="${cls} py-2">
+        <h6>{{message}}</h6>
+    </div>
+    `;
+    $('#alertmsg').append(ele);
+{% endfor %}
+{% endif %}
+</script>
+{% endblock %}

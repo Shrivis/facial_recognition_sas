@@ -1,0 +1,14 @@
+superuser username: root
+superuser password: 1234
+
+your username: nidhi
+your password: 1234
+
+same is mine
+
+other student username: xyz jo v likha ho
+other student password: Student123
+
+requirements(so far)
+-django
+-pillow(for handling images)

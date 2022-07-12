@@ -1,0 +1,60 @@
+{% extends 'basic/basic.html' %}
+{% load static %}
+{% block title %} login {% endblock %}
+{% block body %}
+<!-- Header -->
+
+<div class="col-md-12 window bg py-5 px-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="text-center box padding">
+            </br>
+                <form action="/login/" method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <h3 class="big name">User Login</h3>
+                        <div class="col-md-12 box mb-2" id="msgbox">
+                            <div class="alert-warning bg-transparent text-center" id="alertmsg"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control text-center" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="password" class="form-control text-center" placeholder="Password">
+                    </div>
+                    <button id="submitButton" type="submit" class="btn btn-primary px-5">Login</button>
+                </form>
+            </div>
+            <div class="bg box modal-footer">
+                <button type="button" class="btn btn-secondary submit" data-dismiss="modal" onclick="location.href = '/';" >Home</button>
+                <button type="button" onclick="location.href = '/about';" class="btn btn-primary submit">About</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "basic/footerSmall.html" %}
+{% endblock %}
+
+{% block js %}
+<script>
+{% if messages|length == 0 %}
+document.getElementById("alertmsg").style.display = "none";
+{% else %}
+document.getElementById("alertmsg").style.display = "block";
+{% for message in messages %}
+    if ('{{message}}'.includes("morning"))
+        var cls = "text-success";
+    else   
+        var cls = "text-danger";
+    var ele = `
+    <div class="${cls} py-2">
+        {{message}}
+    </div>
+    `;
+    $('#alertmsg').append(ele);
+{% endfor %}
+{% endif %}
+</script>
+{% endblock %}

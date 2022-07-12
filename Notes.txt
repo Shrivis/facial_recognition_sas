@@ -1,0 +1,20 @@
+superuser username: root
+superuser password: 1234
+
+your username: shrivis
+your password: 1234
+
+
+other student username: <username>
+other student password: Student123
+
+-> required files for livliness
+/main/liveliness_algo.py
+/main/models/*
+/main/liveness_detector/*
+
+-> required files for face recognition
+/main/recogniser_algo.py
+/main/dlib_face_recognition_resnet_model_v1.dat
+/main/shape_predictor_5_face_landmarks.dat
+/media/temp/image.jpg
